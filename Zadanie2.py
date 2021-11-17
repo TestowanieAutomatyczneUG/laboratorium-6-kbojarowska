@@ -1,8 +1,13 @@
 import unittest
 
+class RomanNumerals:
+    def roman(self, num):
+        return "I"
+
+roman = RomanNumerals().roman
+
 class RomanNumeralsTest(unittest.TestCase):
 
-    @unittest.skip("not done yet")
     def test_1_is_a_single_i(self):
         self.assertEqual(roman(1), "I")
 
