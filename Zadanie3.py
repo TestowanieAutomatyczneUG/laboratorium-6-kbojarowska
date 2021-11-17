@@ -14,8 +14,12 @@ On the ninth day of Christmas my true love gave to me: nine Ladies Dancing, eigh
 On the tenth day of Christmas my true love gave to me: ten Lords-a-Leaping, nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.
 On the eleventh day of Christmas my true love gave to me: eleven Pipers Piping, ten Lords-a-Leaping, nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.
 On the twelfth day of Christmas my true love gave to me: twelve Drummers Drumming, eleven Pipers Piping, ten Lords-a-Leaping, nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree."""
-        songList = song.split("\n")
-        return songList[howMany-1]
+        if type(howMany) is int:
+            songList = song.split("\n")
+            return songList[howMany-1]
+        
+        elif howMany == "all":
+            return song
 
 
 lines = Song().lines
@@ -28,9 +32,8 @@ class WriteLinesSongTest(unittest.TestCase):
     def test_ninth_line(self):
         self.assertEqual(lines(9), """On the ninth day of Christmas my true love gave to me: nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.""")
 
-    @unittest.skip("not done yet")
     def test_all_lines(self):
-        self.assertEqual(lines(all), """On the first day of Christmas my true love gave to me: a Partridge in a Pear Tree.
+        self.assertEqual(lines("all"), """On the first day of Christmas my true love gave to me: a Partridge in a Pear Tree.
 On the second day of Christmas my true love gave to me: two Turtle Doves, and a Partridge in a Pear Tree.
 On the third day of Christmas my true love gave to me: three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.
 On the fourth day of Christmas my true love gave to me: four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.
