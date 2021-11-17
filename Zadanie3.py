@@ -45,3 +45,72 @@ On the seventh day of Christmas my true love gave to me: seven Swans-a-Swimming,
     def test_lines_from_five_to_fife(self):
         self.assertEqual(lines((5,5)), """On the fifth day of Christmas my true love gave to me: five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.""")
    
+
+   #Exceptions
+    def test_exception_wrong_number(self):
+        with self.assertRaises(Exception):
+           lines(53)
+
+    def test_exception_zero_as_parameter(self):
+        with self.assertRaises(Exception):
+            lines(0)
+    
+    def test_exception_negative_number(self):
+        with self.assertRaises(Exception):
+           lines(-3)
+
+    def test_exception_float_number(self):
+        with self.assertRaises(Exception):
+            lines(1.4)
+    
+    def test_exception_bad_tuple_interval1(self):
+        with self.assertRaises(Exception):
+            lines((1,42))
+
+    def test_exception_bad_tuple_interval2(self):
+        with self.assertRaises(Exception):
+            lines((91,3))
+
+    def test_exception_bad_tuple_interval3(self):
+        with self.assertRaises(Exception):
+            lines((3,1))
+
+    def test_exception_bad_tuple_interval4(self):
+        with self.assertRaises(Exception):
+            lines((-5,1))
+
+    def test_exception_bad_tuple_interval5(self):
+        with self.assertRaises(Exception):
+            lines((5,-1))
+
+    def test_exception_bad_string(self):
+        with self.assertRaises(Exception):
+            lines("string")
+
+    def test_exception_no_parameter(self):
+        with self.assertRaises(Exception):
+            lines()
+
+    def test_exception_empty_string(self):
+        with self.assertRaises(Exception):
+            lines("")
+
+    def test_exception_empty_tuple(self):
+        with self.assertRaises(Exception):
+            lines(())
+
+    def test_exception_list(self):
+        with self.assertRaises(Exception):
+            lines([])
+
+    def test_exception_dictionary(self):
+        with self.assertRaises(Exception):
+            lines({})
+    
+    def test_exception_tuple_with_dictionary_and_list(self):
+        with self.assertRaises(Exception):
+            lines(([],{}))
+
+    def test_exception_tuple_with_string_and_int(self):
+        with self.assertRaises(Exception):
+            lines(("",4))
