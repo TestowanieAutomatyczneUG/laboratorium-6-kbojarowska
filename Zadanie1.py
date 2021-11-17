@@ -1,8 +1,13 @@
 import unittest
 
+class Hamming:
+    def distance(self, genotype1, genotype2):
+        return 0
+
+hamming=Hamming()
+
 class HammingTest(unittest.TestCase):
 
-    @unittest.skip("not done yet")
     def test_empty_strands(self):
         self.assertEqual(hamming.distance("", ""), 0)
 
