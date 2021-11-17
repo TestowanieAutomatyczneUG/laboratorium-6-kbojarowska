@@ -4,6 +4,10 @@ class RomanNumerals:
     def roman(self, num):
         if num<4:
             return "I"*num
+        elif num==4:
+            return "IV"
+        elif num==5:
+            return "V"
 
 roman = RomanNumerals().roman
 
@@ -18,11 +22,9 @@ class RomanNumeralsTest(unittest.TestCase):
     def test_3_is_three_i_s(self):
         self.assertEqual(roman(3), "III")
 
-    @unittest.skip("not done yet")
     def test_4_being_5_1_is_iv(self):
         self.assertEqual(roman(4), "IV")
 
-    @unittest.skip("not done yet")
     def test_5_is_a_single_v(self):
         self.assertEqual(roman(5), "V")
 
