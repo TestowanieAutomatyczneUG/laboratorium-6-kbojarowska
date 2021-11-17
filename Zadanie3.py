@@ -25,8 +25,11 @@ On the twelfth day of Christmas my true love gave to me: twelve Drummers Drummin
             return song
 
         elif type(howMany) is tuple:
-            songList = song.split("\n")
-            return "\n".join(songList[howMany[0]-1:howMany[1]])
+            if howMany[0] <= howMany[1] and howMany[0]>0 and howMany[0]<=12 and howMany[1]>0 and howMany[1]<=12:
+                songList = song.split("\n")
+                return "\n".join(songList[howMany[0]-1:howMany[1]])
+            else:
+                raise Exception("Bad tuple interval")
 
         else:
             raise Exception("Bad data type")
@@ -99,28 +102,23 @@ On the seventh day of Christmas my true love gave to me: seven Swans-a-Swimming,
     def test_exception_float_number(self):
         with self.assertRaises(Exception):
             lines(1.4)
-
-    @unittest.skip("not done yet")    
+   
     def test_exception_bad_tuple_interval1(self):
         with self.assertRaises(Exception):
             lines((1,42))
 
-    @unittest.skip("not done yet")
     def test_exception_bad_tuple_interval2(self):
         with self.assertRaises(Exception):
             lines((91,3))
 
-    @unittest.skip("not done yet")
     def test_exception_bad_tuple_interval3(self):
         with self.assertRaises(Exception):
             lines((3,1))
 
-    @unittest.skip("not done yet")
     def test_exception_bad_tuple_interval4(self):
         with self.assertRaises(Exception):
             lines((-5,1))
 
-    @unittest.skip("not done yet")
     def test_exception_bad_tuple_interval5(self):
         with self.assertRaises(Exception):
             lines((5,-1))
