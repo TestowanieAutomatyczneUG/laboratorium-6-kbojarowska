@@ -25,7 +25,7 @@ On the twelfth day of Christmas my true love gave to me: twelve Drummers Drummin
             return song
 
         elif type(howMany) is tuple:
-            if howMany[0] <= howMany[1] and howMany[0]>0 and howMany[0]<=12 and howMany[1]>0 and howMany[1]<=12:
+            if howMany[0] <= howMany[1] and howMany[0]>0 and howMany[0]<=12 and howMany[1]>0 and howMany[1]<=12 and type(howMany[0]) is int and type(howMany[1]) is int:
                 songList = song.split("\n")
                 return "\n".join(songList[howMany[0]-1:howMany[1]])
             else:
@@ -85,6 +85,12 @@ On the seventh day of Christmas my true love gave to me: seven Swans-a-Swimming,
     def test_lines_from_five_to_fife(self):
         self.assertEqual(lines((5,5)), """On the fifth day of Christmas my true love gave to me: five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.""")
    
+    def test_first_line_in_tuple(self):
+        self.assertEqual(lines((1,1)), "On the first day of Christmas my true love gave to me: a Partridge in a Pear Tree.")
+
+    def test_last_line_in_tuple(self):
+        self.assertEqual(lines((12,12)), "On the twelfth day of Christmas my true love gave to me: twelve Drummers Drumming, eleven Pipers Piping, ten Lords-a-Leaping, nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.")
+
 
    #Exceptions
     def test_exception_wrong_number(self):
@@ -123,42 +129,34 @@ On the seventh day of Christmas my true love gave to me: seven Swans-a-Swimming,
         with self.assertRaises(Exception):
             lines((5,-1))
 
-    @unittest.skip("not done yet")
     def test_exception_bad_string(self):
         with self.assertRaises(Exception):
             lines("string")
 
-    @unittest.skip("not done yet")
     def test_exception_no_parameter(self):
         with self.assertRaises(Exception):
             lines()
 
-    @unittest.skip("not done yet")
     def test_exception_empty_string(self):
         with self.assertRaises(Exception):
             lines("")
 
-    @unittest.skip("not done yet")
     def test_exception_empty_tuple(self):
         with self.assertRaises(Exception):
             lines(())
 
-    @unittest.skip("not done yet")
     def test_exception_list(self):
         with self.assertRaises(Exception):
             lines([])
 
-    @unittest.skip("not done yet")
     def test_exception_dictionary(self):
         with self.assertRaises(Exception):
             lines({})
-
-    @unittest.skip("not done yet")  
+ 
     def test_exception_tuple_with_dictionary_and_list(self):
         with self.assertRaises(Exception):
             lines(([],{}))
 
-    @unittest.skip("not done yet")
     def test_exception_tuple_with_string_and_int(self):
         with self.assertRaises(Exception):
             lines(("",4))
