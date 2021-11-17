@@ -15,8 +15,11 @@ On the tenth day of Christmas my true love gave to me: ten Lords-a-Leaping, nine
 On the eleventh day of Christmas my true love gave to me: eleven Pipers Piping, ten Lords-a-Leaping, nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.
 On the twelfth day of Christmas my true love gave to me: twelve Drummers Drumming, eleven Pipers Piping, ten Lords-a-Leaping, nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree."""
         if type(howMany) is int:
-            songList = song.split("\n")
-            return songList[howMany-1]
+            if howMany>0 and howMany<=12:
+                songList = song.split("\n")
+                return songList[howMany-1]
+            else:
+                raise Exception("Bad number")
         
         elif howMany == "all":
             return song
@@ -24,6 +27,9 @@ On the twelfth day of Christmas my true love gave to me: twelve Drummers Drummin
         elif type(howMany) is tuple:
             songList = song.split("\n")
             return "\n".join(songList[howMany[0]-1:howMany[1]])
+
+        else:
+            raise Exception("Bad data type")
 
 
 lines = Song().lines
@@ -35,6 +41,9 @@ class WriteLinesSongTest(unittest.TestCase):
 
     def test_ninth_line(self):
         self.assertEqual(lines(9), """On the ninth day of Christmas my true love gave to me: nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.""")
+
+    def test_last_line(self):
+        self.assertEqual(lines(12), "On the twelfth day of Christmas my true love gave to me: twelve Drummers Drumming, eleven Pipers Piping, ten Lords-a-Leaping, nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.")
 
     def test_all_lines(self):
         self.assertEqual(lines("all"), """On the first day of Christmas my true love gave to me: a Partridge in a Pear Tree.
@@ -75,22 +84,18 @@ On the seventh day of Christmas my true love gave to me: seven Swans-a-Swimming,
    
 
    #Exceptions
-    @unittest.skip("not done yet")
     def test_exception_wrong_number(self):
         with self.assertRaises(Exception):
            lines(53)
 
-    @unittest.skip("not done yet")
     def test_exception_zero_as_parameter(self):
         with self.assertRaises(Exception):
             lines(0)
-
-    @unittest.skip("not done yet")  
+ 
     def test_exception_negative_number(self):
         with self.assertRaises(Exception):
            lines(-3)
 
-    @unittest.skip("not done yet")
     def test_exception_float_number(self):
         with self.assertRaises(Exception):
             lines(1.4)
