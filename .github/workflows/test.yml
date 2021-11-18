@@ -1,0 +1,20 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [main]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run tests for Zadanie1
+        run: python Zadanie1.py
+      - name: Run tests for Zadanie2
+        run: python Zadanie2.py
+      - name: Run tests for Zadanie3
+        run: python Zadanie3.py

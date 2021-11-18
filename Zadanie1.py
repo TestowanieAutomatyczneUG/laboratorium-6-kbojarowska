@@ -54,3 +54,6 @@ class HammingTest(unittest.TestCase):
             self.assertRaisesRegex = self.assertRaisesRegexp
     def assertRaisesWithMessage(self, exception):
         return self.assertRaisesRegex(exception, r".+")
+
+if __name__ == "__main__":
+	unittest.main()

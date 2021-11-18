@@ -160,3 +160,6 @@ On the seventh day of Christmas my true love gave to me: seven Swans-a-Swimming,
     def test_exception_tuple_with_string_and_int(self):
         with self.assertRaises(Exception):
             lines(("",4))
+
+if __name__ == "__main__":
+	unittest.main()
